@@ -2671,7 +2671,7 @@ contact_form
   background: transparent;
   color: var(--color-text-main);
   font-family: inherit;
-  font-size: var(--color-text-main);
+  font-size: var(--fs-text);
   letter-spacing: 0.08em;
 
   /* OSデフォルトの見た目を消す */
@@ -2706,6 +2706,15 @@ contact_form
   gap: clamp(16px, 4vw, 40px);
 }
 
+.contact_form_inner .form_row.form_row_2col .form_field {
+  min-width: 0; /* ←これ追加 */
+}
+
+.form_row .form_input,
+.form_textarea {
+  box-sizing: border-box; /* ←これも追加 */
+}
+
 .form_row .form_input {
   width: 100%;
   border: 1px solid #fff;
@@ -2713,7 +2722,7 @@ contact_form
   padding-block: 20px;
   color: var(--color-text-main);
   font-family: inherit;
-  font-size: var(--color-text-main);
+  font-size: var(--fs-text);
   letter-spacing: 0.08em;
 
   /* OSデフォルトの見た目を消す */
@@ -2730,7 +2739,7 @@ contact_form
   padding-block: 30px;
   color: var(--color-text-main);
   font-family: inherit;
-  font-size: var(--color-text-main);
+  font-size: var(--fs-text);
   letter-spacing: 0.08em;
 
   /* OSデフォルトの見た目を消す */
