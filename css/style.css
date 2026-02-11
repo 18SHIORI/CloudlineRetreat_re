@@ -2749,6 +2749,12 @@ contact_form
   outline: none;
 }
 
+@media (max-width: 767px) {
+  .contact_form_inner .form_row.form_row_2col {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ------------------------------
 form_agree
 ------------------------------ */
