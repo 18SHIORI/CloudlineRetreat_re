@@ -406,6 +406,21 @@ main_visual（山＋雲をセットでfixed）
   display: none !important;  /* Safariのコントロール非表示 */
 }
 
+/* iOS Safari の再生オーバーレイ（▶︎）対策 */
+.mv_cloud::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+.mv_cloud::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+.mv_cloud::-webkit-media-controls {
+  display: none !important;
+}
+
 /* =============================
 concept
 ==============================*/
