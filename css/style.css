@@ -402,6 +402,9 @@ main_visual（山＋雲をセットでfixed）
   z-index: 2;
 }
 
+.mv_cloud::-webkit-media-controls{
+  display: none !important;  /* Safariのコントロール非表示 */
+}
 
 /* =============================
 concept
