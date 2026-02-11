@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cloudline Retreat</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&display=swap"
+        rel="stylesheet"/>
+    <!-- Slick CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <!-- 自分のCSS -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <div class="mist_intro" aria-hidden="true"></div>
+    <header>
+        <div class="wrapper header_inner">
+            <h1><a href="index.html"><img src="images/logo4.svg" alt="Cloudline Retreat"></a></h1>
+
+            <div class="header_inner_right">
+                <a href="#" class="btn-reserve">ご予約</a>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+
+            <nav id="navi">
+                <button type="button" class="nav_close" aria-label="メニューを閉じる"></button>
+
+                <ul class="nav_menu">
+                    <li><a href="index.html">トップ</a></li>
+                    <li><a href="index.html#experience">整う体験</a></li>
+                    <li><a href="room.html">客室</a></li>
+                    <li><a href="meal.html">お料理</a></li>
+                    <li><a href="access.html">アクセス</a></li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
+                </ul>
+
+                <div class="nav_cta">
+                    <a href="#" class="nav_reserve">ご予約</a>
+                    <a href="contact.html" class="nav_contact">お問い合わせ</a>
+                </div>
+            </nav>
+
+            <div class="mask"></div>
+        </div>
+    </header>
+
+    <main>
+        <section id="main_visual" class="main_visual">
+            <img class="mv_mountain" src="images/hero_bottom.jpg" alt="">
+
+            <video class="mv_cloud" autoplay muted loop playsinline>
+                <source src="images/hero_top.mp4" type="video/mp4">
+            </video>
+        </section>
+
+        <div class="mv_spacer"></div>
+
+        <div class="page_white">
+            <section id="concept" class="concept">
+                <div class="wrapper">
+                    <div class="concept_stack js-concept-animate">
+                        <div class="concept_card concept_card_top js-card js-card-right">
+                            <div class="concept_card_inner">
+                                <p class="vertical-text vertical-text-top">
+                                    雲海の中で<br>
+                                    心と体を整える時間
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="concept_card concept_card_bottom js-card js-card-left">
+                            <div class="concept_card_inner">
+                                <p class="vertical-text vertical-text-bottom">
+                                    朝の光と雲のゆらぎに<br>
+                                    深い呼吸が生まれ<br>
+                                    自分の軸を取り戻す場所
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concept_swap js-concept-swap">
+                        <p class="vertical-text concept_msg concept_msg_right">
+                            雲海の中で<br>
+                            心と体を整える時間
+                        </p>
+
+                        <p class="vertical-text concept_msg concept_msg_left">
+                            朝の光と雲のゆらぎに<br>
+                            深い呼吸が生まれ<br>
+                            自分の軸を取り戻す場所
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="concept_sb" class="concept_sb">
+                <div class="wrapper">
+                    <div class="concept_sb_box js-concept-sb">
+                        <div class="concept_sb_images js-sb-image">
+                            <img src="images/concept_sb.png" alt="">
+                        </div>
+                        <div class="concept_sb_text js-sb-text">
+                            <p>雲海が広がる場所で、<br>
+                                朝の光とともに、<br>
+                                一日が静かに始まります。<br>
+                                時間がゆっくりとほどけていく、<br>
+                                そんな静けさに包まれています。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- </div> -->
+
+            <section id="experience" class="experience js-delay-reveal">
+                <div class="experience_cover" aria-hidden="true"></div>
+
+                <div class="wrapper">
+                    <h2 class="section_title experience_title">整う体験</h2>
+                </div>
+
+                <div class="experience_bg">
+                    <div class="experience_bg_image" aria-hidden="true"></div>
+
+                    <!-- <div class="experience_bg"> -->
+                    <div class="wrapper">
+                        <div class="step" data-step="1">
+                            <div class="step_sticky">
+                                <div class="step_grid">
+                                    <div class="step_left">
+                                        <p class="step_label">01</p>
+                                        <h3 class="step_title">呼吸と静けさに身をゆだねる</h3>
+                                        <p class="step_desc">
+                                            雲の流れと朝の光に包まれながら、<br>
+                                            深い呼吸が自然と戻っていく時間。<br>
+                                            何かをしようとしなくても、<br>
+                                            ただ静けさの中に身を置くだけで整っていきます。
+                                        </p>
+                                    </div>
+
+                                    <div class="step_right">
+                                        <div class="shot_track">
+                                            <figure class="shot" data-shot="1">
+                                                <img src="images/experience1.png" alt="">
+                                            </figure>
+                                            <figure class="shot" data-shot="2">
+                                                <img src="images/experience2.png" alt="">
+                                            </figure>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step_sticky">
+                                <div class="step_grid">
+                                    <div class="step_left">
+                                        <p class="step_label">02</p>
+                                        <h3 class="step_title">体を温め、ゆるめる</h3>
+                                        <p class="step_desc">
+                                            サウナや温浴で体をゆっくりと温め、<br>
+                                            張りつめた筋肉と呼吸を柔らかくほどく。<br>
+                                            外気に触れながら、<br>
+                                            体の感覚に意識を戻す時間です。
+                                        </p>
+                                    </div>
+
+                                    <div class="step_right">
+                                        <div class="shot_track">
+                                            <figure class="shot" data-shot="3">
+                                                <img src="images/experience3.png" alt="">
+                                            </figure>
+                                            <figure class="shot" data-shot="4">
+                                                <img src="images/experience4.png" alt="">
+                                            </figure>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="3">
+                            <div class="step_sticky">
+                                <div class="step_grid">
+                                    <div class="step_left">
+                                        <p class="step_label">03</p>
+                                        <h3 class="step_title">食と睡眠で、リズムを整える</h3>
+                                        <p class="step_desc">
+                                            旬の食材を使ったやさしい食事と、<br>
+                                            静かな夜の時間。<br>
+                                            朝は雲海とともに目覚め、<br>
+                                            乱れがちな生活リズムをゆっくり整えていきます。
+                                        </p>
+                                    </div>
+
+                                    <div class="step_right">
+                                        <div class="shot_track">
+                                            <figure class="shot" data-shot="5">
+                                                <img src="images/experience5.png" alt="">
+                                            </figure>
+                                            <figure class="shot" data-shot="6">
+                                                <img src="images/experience6.png" alt="">
+                                            </figure>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+            </section>
+
+            <section id="cloud-terrace" class="cloud-terrace wrapper">
+                <h2 class="section_title cloud-terrace_title">雲海テラスの過ごし方</h2>
+                <p class="cloud-terrace_title_lead">雲の上で、何もしないという贅沢を</p>
+
+                <div class="cloud-terrace_hero">
+                    <div class="cloud-terrace_hero_image js-reveal">
+                        <img src="images/terrace3.png" alt="">
+                    </div>
+                    <div class="cloud-terrace_hero_content">
+                        <h3 class="cloud-terrace_hero_title">朝｜雲海と光に包まれる時間</h3>
+                        <p class="cloud-terrace_hero_text">
+                            朝の光とともに、<br>
+                            静かに立ちのぼる雲海。<br>
+                            刻々と表情を変える景色を前に、<br>
+                            ただ深呼吸をして過ごす時間があります。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="cloud-terrace_content">
+                    <div class="cloud-terrace_content_image js-reveal js-parallax">
+                        <img src="images/terrace4.png" alt="">
+                    </div>
+                    <div class="cloud-terrace_content_text">
+                        <h3 class="cloud-terrace_content_title">何もしない時間を許す</h3>
+                        <p class="cloud-terrace_content_text_note">
+                            本を読んでも、<br>
+                            目を閉じていても、<br>
+                            何もしなくてもいい。<br>
+                            雲海テラスでは、<br>
+                            過ごし方に正解はありません。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="cloud-terrace_gallery">
+                    <div class="cloud-terrace_gallery_text">
+                        <h3 class="cloud-terrace_gallery_title">時間帯で変わる表情</h3>
+                        <p class="cloud-terrace_gallery_text">
+                            朝、昼、そして夕暮れ。<br>
+                            同じ場所でも、時間によって
+                            <br class="sp-only">
+                            景色は少しずつ変わっていきます。<br>
+                            その変化を眺めることも、<br class="sp-only">
+                            この場所での楽しみのひとつです。
+                            </p>
+                    </div>
+                    <div class="cloud-terrace_content_items">
+                        <div class="cloud-terrace_item js-reveal js-parallax">
+                            <img src="images/terrace_item1.png" alt="">
+                        </div>
+                        <div class="cloud-terrace_item js-reveal js-parallax">
+                            <img src="images/terrace_item2.png" alt="">
+                        </div>
+                        <div class="cloud-terrace_item js-reveal js-parallax">
+                            <img src="images/terrace_item3.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section_divider"></div>
+
+            <section id="guide" class="guide">
+                <div class="guide_inner">
+                    <a class="guide_item" href="room.html">
+                        <img class="guide_img" src="images/guide_img1.png" alt="客室">
+                        <span class="guide_label">客室
+                            <span class="room_arrow"></span>
+                        </span>
+                        <span class="room_detail">詳細を見る</span>
+                    </a>
+
+                    <a class="guide_item" href="meal.html">
+                        <img class="guide_img" src="images/guide_img2.png" alt="お料理">
+                        <span class="guide_label">お料理
+                            <span class="room_arrow"></span>
+                        </span>
+                        <span class="room_detail">詳細を見る</span>
+                    </a>
+
+                    <a class="guide_item" href="access.html">
+                        <img class="guide_img" src="images/guide_img3.png" alt="アクセス">
+                        <span class="guide_label">アクセス
+                            <span class="room_arrow"></span>
+                        </span>
+                        <span class="room_detail">詳細を見る</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <button class="back-to-top" aria-label="トップへ戻る"></button>
+
+    <footer class="footer">
+        <div class="footer_inner wrapper">
+            <!-- 左 -->
+            <div class="footer_left">
+                <div class="footer_left_images">
+                    <img src="images/logo4.svg" alt="Cloudline Retreat">
+                </div>
+
+                <div class="footer_info">
+                    <p>〒949-0305<br>新潟県南魚沼市雲ヶ丘1257-3</p>
+                    <a href="tel:0257834120" class="footer_tel">025-783-4120</a>
+                    <p>受付時間：9:00～18:00</p>
+                    <p class="footer_note">
+                        チェックインのお問い合わせ、予約変更などのご連絡は
+                        こちらの時間内で承ります。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 中央 -->
+            <div class="footer_center">
+                <nav class="footer_nav">
+                    <a href="index.html">トップ</a>
+                    <a href="meal.html">お料理</a>
+                    <a href="index.html#experience">整う体験</a>
+                    <a href="access.html">アクセス</a>
+                    <a href="room.html">客室</a>
+                </nav>
+
+                <div class="footer_sns">
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                </div>
+            </div>
+
+            <!-- 右 -->
+            <div class="footer_right">
+                <a href="#" class="footer_reserve">ご予約</a>
+
+                <a href="contact.html" class="footer_contact">
+                    お問い合わせ
+                    <span class="footer_contact_line"></span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="page_transition" aria-hidden="true">
+        <!-- スクリーンリーダーに読ませない指示 -->
+        <!-- 目には見えるけど読まなくて良い -->
+        <div class="page_transition_inner">
+            <span class="page_transition_logo">Cloudline Retreat</span>
+        </div>
+    </div>
+
+    <!-- jQuery（先に読み込み） -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Slick（jQueryの後に読み込み） -->
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- 自分のJS（最後・defer） -->
+    <script src="js/main.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,2903 @@
+/* =============================
+base
+==============================*/
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Shippori Mincho", serif;
+  line-height: 2.4;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+}
+
+.wrapper {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 1%;
+}
+
+/* tablet */
+@media (max-width: 1024px) {
+  .wrapper {
+    padding-inline: 4%;
+  }
+}
+
+:root {
+  /* 基本カラー */
+  --color-base: #F7F6F2;
+  --color-text-main: #2E2E2E;
+
+  /* ブランド・世界観カラー */
+  --color-accent: #525B69;
+  --color-accent-sub: #AEB7C2;
+}
+
+:root {
+  /* フォントサイズ */
+  --fs-title: 32px;
+  --fs-heading: 24px;
+  --fs-text: 16px;
+  --fs-small: 14px;
+  --fs-caption: 12px;
+
+  /* 行間 */
+  --lh-base: 2.4;
+  --lh-tight: 1.8;
+}
+
+:root {
+  /* セクション用の共通余白 */
+  --space-section-lg: clamp(120px, 20vw, 240px);
+  --space-section-md: clamp(60px, 16vw, 120px);
+  --space-section-sm: clamp(48px, 12vw, 96px);
+}
+
+:root {
+  /* フォントサイズ */
+  --fs-title: clamp(24px, 3vw, 32px);
+  --fs-heading: clamp(18px, 2.2vw, 24px);
+  --fs-text: clamp(14px, 1.4vw, 16px);
+  --fs-small: clamp(13px, 1.2vw, 14px);
+  --fs-caption: 12px;
+
+  /* 行間 */
+  --lh-base: clamp(2.0, 2.2vw, 2.4);
+  --lh-tight: clamp(1.6, 1.7vw, 1.8);
+}
+
+:root{
+  --header-btn-h: clamp(48px, 8vw, 64px);
+}
+
+.section_title {
+  font-size: var(--fs-title);
+  color: var(--color-text-main);
+}
+
+/* =============================
+header
+==============================*/
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(30, 35, 45, 0.40) 0%,
+    rgba(30, 35, 45, 0.25) 40%,
+    rgba(30, 35, 45, 0.12) 70%,
+    rgba(30, 35, 45, 0.0) 100%
+  );
+}
+
+header h1 {
+  width: 180px;
+}
+
+header .header_inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid red; */
+}
+
+header .header_inner_right {
+  display: flex;
+  align-items: center;
+  /* border: 1px solid blue; */
+}
+
+/* ご予約ボタン */
+
+header .btn-reserve {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-base);
+  border: 1px solid var(--color-base);
+  font-size: var(--fs-heading);
+  width: clamp(160px, 40vw, 220px);
+  height: var(--header-btn-h);
+  text-align: center;
+  transition: color 0.4s ease;
+  line-height: 1;
+}
+
+.btn-reserve:hover {
+  color: var(--color-text-main);
+  border: 1px solid #fff;
+  background-color: #fff;
+}
+
+/* ハンバーガーメニュー */
+
+header .hamburger {
+  width: 32px;
+  height: var(--header-btn-h);
+  margin-left: 24px;
+  cursor: pointer;
+  position: relative;
+  /* border: 1px solid pink; */
+}
+
+header .hamburger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-base);
+  transition: all 0.3s ease;
+  z-index: 120;
+  top: 50%;
+}
+
+header .hamburger span:nth-child(1){
+  transform: translateY(-7px);
+}
+header .hamburger span:nth-child(2){
+  transform: translateY(7px);
+}
+
+/* ×になる時も中央基準 */
+header .hamburger.is-open span:nth-child(1){
+  transform: rotate(45deg);
+}
+header .hamburger.is-open span:nth-child(2){
+  transform: rotate(-45deg);
+}
+
+/* ナビメニュー */
+
+/* ===== オーバーレイ（背景の半透明） ===== */
+.mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+  z-index: 900;
+}
+
+/* ===== 右側メニュー本体 ===== */
+#navi {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(340px, 88vw);
+  height: 100vh;
+  background-color: var(--color-base);
+  z-index: 1000;
+
+  /* 右から出す */
+  transform: translateX(100%);
+  transition: transform .45s ease;
+
+  /* レイアウト */
+  display: flex;
+  flex-direction: column;
+  padding: 28px 24px 32px;
+  /* border: 1px solid red; */
+}
+
+/* 開いた状態 */
+body.nav-open #navi {
+  transform: translateX(0);
+}
+body.nav-open .mask {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===== ナビ上部 ===== */
+
+/* ×ボタン */
+.nav_close {
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+.nav_close::before,
+.nav_close::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 22px;
+  height: 1px;
+  background: var(--color-text-main);
+}
+
+.nav_close::before { transform: translate(-50%, -50%) rotate(45deg); }
+.nav_close::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+/* ===== メニュー ===== */
+.nav_menu {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  text-align: center;
+  margin-block: 120px;
+}
+
+.nav_menu a {
+  color: var(--color-text-main);
+  text-decoration: none;
+  letter-spacing: 0.12em;
+  font-size: var(--fs-text);
+}
+
+.nav_menu li {
+  margin-bottom: 20px;
+}
+
+.nav_menu li:last-child {
+  margin-bottom: 0px;
+}
+
+/* ===== 下部CTA ===== */
+.nav_cta {
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+  padding-bottom: 8px;
+}
+
+.nav_reserve {
+  display: inline-grid;
+  place-items: center;
+  width: clamp(160px, 30vw, 220px);
+  height: clamp(48px, 8vw, 64px);
+  background-color: #fff;
+  color: var(--color-text-main);
+  font-size: var(--fs-heading);
+  text-decoration: none;
+  letter-spacing: 0.12em;
+  transition: background-color .3s ease, color .3s ease;
+}
+
+.nav_reserve:hover {
+  background-color: #f2f2ee;
+}
+
+.nav_contact {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+  color: var(--color-text-main);
+  text-decoration: none;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+}
+
+.nav_contact::after {
+  content:"";
+  position:absolute;
+  left: 50%;
+  bottom: 0;
+  width: 240px;
+  height: 1px;
+  background: rgba(46,46,46,0.35);
+  transform: translateX(-50%);
+}
+
+/* ==============================
+main_visual
+============================== */
+
+/* .mv_spacer {
+  height: 100vh;
+}
+
+.main_visual {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  z-index: -1;
+}
+
+.main_visual_video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
+
+/* ===============================
+main_visual（山＋雲をセットでfixed）
+=============================== */
+
+.mv_spacer {
+  height: 100vh;
+}
+
+.main_visual{
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  /* 背景として背面 */
+  z-index: -1; 
+  overflow: hidden;
+}
+
+/* 下：山 */
+.mv_mountain{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;  /* 見せたい位置があれば center 70% とかにする */
+  display: block;
+  /* 彩度 */
+  filter: saturate(2.0);
+
+  /* 端の白線が出ることがある？ */
+  transform: scale(1.01);
+  /* ごくわずかに拡大して、表示の“スキマ”を消すため */
+  z-index: 1;
+}
+
+/* 上：雲 */
+.mv_cloud{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  /* ヘッダーやリンク操作を邪魔しない */
+
+  /* 雲の強さ */
+  opacity: 0.7;
+  filter: saturate(0.8) brightness(0.9);
+  z-index: 2;
+}
+
+
+/* =============================
+concept
+==============================*/
+
+.page_white {
+  background-color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.concept {
+  padding-top: clamp(120px, 20vw, 240px);
+  padding-bottom: clamp(120px, 20vw, 240px);
+}
+
+.concept_stack {
+  /* 基準点＋スペース確保のために高さ */
+  /* 重ねるための土台 */
+  position: relative;
+  width: 100%;
+  height: 640px; 
+  /* 重なり */
+  /* border: 1px solid red; */
+}
+
+/* 共通カード */
+.concept_card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 440px;
+  border: 1px solid var(--color-text-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* 中央基準 */
+  transform: translate(-50%, -50%);
+}
+
+/* 上のカード */
+.concept_card_top {
+  transform:
+    translate(-50%, -50%)
+    translate(160px, -160px);
+    /* 中央寄せした後に斜め移動 */
+}
+
+/* 下のカード */
+.concept_card_bottom {
+  transform:
+    translate(-50%, -50%)
+    translate(-160px, 160px);
+}
+
+/* 縦書きテキスト */
+.vertical-text {
+  writing-mode: vertical-rl;
+  /* 縦書きで右から左へ */
+  text-orientation: mixed;
+  color: var(--color-text-main);
+  line-height: var(--lh-base);
+  letter-spacing: 0.1em;
+}
+
+.vertical-text-top {
+  font-size: var(--fs-title);
+}
+
+.vertical-text-bottom {
+  font-size: var(--fs-heading);
+}
+
+/* concept scroll animation */
+
+/* アニメは中身だけを動かす */
+.concept_card_inner {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 4.0s ease, transform 4.0s ease;
+  will-change: opacity, transform;
+}
+
+.concept_card.is-show .concept_card_inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.concept_card_sp {
+  display: none;
+}
+
+.concept_swap {
+  display: none;
+}
+
+/* ===== スマホ用（例：768px以下） ===== */
+@media (max-width: 768px){
+
+  .concept_stack {
+    display: none;
+  }
+
+  .concept_swap {
+    display: block;
+    width: min(360px, 86vw);
+    height: calc(min(360px, 86vw) * 1.5);
+    margin: 0 auto;
+    border: 1px solid var(--color-text-main);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ★追加：pのデフォルト余白を消す */
+  .concept_swap .concept_msg {
+    margin: 0;
+  }
+
+  /* ★修正：中心は常に -50%,-50% に固定して、Y方向だけ別で動かす */
+  .concept_swap .concept_msg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+
+    transform: translate(-50%, -50%) translateY(24px); /* 初期は中心から少し下 */
+    transition: opacity 1.4s ease, transform 1.4s ease;
+    will-change: opacity, transform;
+  }
+
+  /* 右の文字が出る */
+  .concept_swap.is-step1 .concept_msg_right {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+  }
+
+  /* 右が消える */
+  .concept_swap.is-step2 .concept_msg_right {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(-12px);
+  }
+
+  /* 左が出る */
+  .concept_swap.is-step2 .concept_msg_left {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+  }
+
+  .concept_swap .concept_msg {
+    font-size: clamp(18px, 4.5vw, 22px);
+    line-height: 2.2;
+    letter-spacing: 0.12em;
+  }
+}
+
+/* =============================
+concept_sb
+============================= */
+
+.concept_sb_box {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.concept_sb_images {
+  width: 50%;
+  /* border: 1px solid red; */
+}
+
+.concept_sb_text {
+  width: 40%;
+  /* border: 1px solid blue; */
+}
+
+.concept_sb_text p {
+  color: var(--color-text-main);
+  letter-spacing: 0.1em;
+  line-height: var(--lh-base);
+  font-size: var(--fs-heading);
+}
+
+/* 初期状態 */
+.concept_sb_images,
+.concept_sb_text {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 3.0s ease, transform 3.0s ease;
+}
+
+/* 表示状態 */
+.concept_sb_images.is-show,
+.concept_sb_text.is-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+
+  .concept_sb_box {
+    flex-direction: column;
+    gap: 40px; /* 画像と文字の間の余白 */
+  }
+
+  .concept_sb_images,
+  .concept_sb_text {
+    width: 100%;
+  }
+
+  .concept_sb_text {
+    width: 100%;
+    display: flex;
+    justify-content: center; 
+  }
+
+  .concept_sb_text p {
+    text-align: left; 
+    max-width: 32em; 
+    font-size: clamp(16px, 4.5vw, 20px);
+  }
+
+}
+
+/* ==============================
+experience
+============================== */
+
+.experience {
+  position: relative;
+  padding-top: clamp(120px, 20vw, 240px);
+}
+
+/* 幕 */
+.experience_cover {
+  position: absolute;
+  inset: 0;
+  background: #fff;          /* ←ページ背景色に合わせて */
+  opacity: 1;
+  transition: opacity 0.15s linear;
+  z-index: 99999;            /* とにかく最前面へ */
+  pointer-events: none;
+}
+
+/* 幕が消える */
+.experience.is-show .experience_cover {
+  opacity: 0;
+}
+.experience_title { 
+  background-color: #fff;
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: 40px 0 24px;
+}
+
+/* 背景を敷くのは step の親だけ */
+.experience_bg {
+  position: relative;
+  isolation: isolate;
+}
+
+.experience_bg_image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 背景を sticky させる本体 */
+.experience_bg_image::before {
+  content: "";
+  display: block;
+  position: sticky;
+  top: 0;
+  /* スクロールしても上に張り付く */
+  height: 100vh;
+
+  background-image: url("../images/experience_bg.png");
+  background-repeat: no-repeat;
+  background-position: center 30%;
+  background-size: cover;
+/* 背景は画面に貼り付いたまま」で、下のコンテンツだけがスクロールして切り替わっていく */
+}
+
+/* step は背景より上 */
+.experience_bg .step {
+  position: relative;
+  z-index: 1;
+}
+
+/* 横スクロール事故防止 */
+body {
+  overflow-x: hidden;
+}
+
+/* 1ステップのスクロール量を作る */
+.step {
+  min-height: 200vh;
+  position: relative;
+}
+
+/* stickyにする箱 */
+.step_sticky {
+  position: sticky;
+  top: 0;
+  /* スクロールしても上に張り付く */
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* 左右2カラム */
+.step_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+  width: 100%;
+}
+
+/* 左カラム（テキスト） */
+.step_left {
+  padding-top: 32px;
+}
+
+.step_label {
+  font-size: var(--fs-heading);
+  letter-spacing: 0.12em;
+  opacity: 0.8;
+  margin-bottom: 12px;
+  color: var(--color-text-main);
+}
+
+.step_title {
+  font-size: var(--fs-heading);
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  color: var(--color-text-main);
+}
+
+.step_desc {
+  font-size: var(--fs-text);
+  line-height: 2.4;
+  opacity: 0.85;
+  color: var(--color-text-main);
+}
+
+/* PCでは step_right の役目を「右寄せ」だけにする */
+.step_right {
+  padding-top: 24px;
+}
+
+/* ★画像2枚の縦積み＆間隔は shot_track に持たせる */
+.shot_track {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  /* PCの隙間 */
+  align-items: flex-end;
+}
+
+/* 画像 */
+.shot {
+  position: relative;
+  width: 360px;
+  max-width: 100%;
+  margin: 0;
+
+  /* 表示アニメーション */
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .6s ease, transform .6s ease;
+
+  box-shadow: 12px 16px 32px rgba(0, 0, 0, 0.10);
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 表示したい時だけ出す（jQueryの .is-visible 用） */
+.shot.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  box-shadow: 12px 16px 32px rgba(0, 0, 0, 0.18);
+}
+
+/* ========== 画像の“段違い配置” ==========
+/* step1 */
+.step[data-step="1"] .shot[data-shot="2"]{
+  transform: translateX(-140px) translateY(12px); /* 初期（非表示時） */
+}
+.step[data-step="1"] .shot[data-shot="2"].is-visible{
+  transform: translateX(-140px) translateY(0);   /* 表示時 */
+}
+
+/* step2 */
+.step[data-step="2"] .shot[data-shot="4"]{
+  transform: translateX(-120px) translateY(12px);
+}
+.step[data-step="2"] .shot[data-shot="4"].is-visible{
+  transform: translateX(-120px) translateY(0);
+}
+
+/* step3 */
+.step[data-step="3"] .shot[data-shot="6"]{
+  transform: translateX(-120px) translateY(12px);
+}
+.step[data-step="3"] .shot[data-shot="6"].is-visible{
+  transform: translateX(-120px) translateY(0);
+}
+
+@media (max-width: 768px) {
+  .step {
+    min-height: auto;
+    padding: 48px 0;
+  }
+  .step_sticky {
+    position: static;
+    height: auto;
+    display: block;
+  }
+  .step_grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .step_left { 
+    padding-top: 0;
+  }
+
+  /* ===== ここから「フェード切り替え用」 ===== */
+
+  /* 画像の枠 */
+  .shot_track {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5 / 4;
+    overflow: hidden;
+  }
+
+  .shot_track .shot {
+    position: absolute;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    opacity: 0;
+  }
+
+  .shot_track .shot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @keyframes fadeSwap {
+    0%   { opacity: 1; }
+    8%   { opacity: 1; }   /* 表示時間（ここを短く） */
+    60%  { opacity: 0; }   /* フェード時間（ここを長く） */
+    100% { opacity: 0; }   /* 消えてる時間 */
+  }
+
+  .shot_track .shot:nth-child(1){
+    animation: fadeSwap 8s infinite;
+    animation-delay: 0s;
+  }
+
+  .shot_track .shot:nth-child(2){
+    animation: fadeSwap 8s infinite;
+    animation-delay: -4s;  /* 10sの半分 */
+  }
+
+  .shot_track .shot,
+  .shot_track .shot.is-visible,
+  .step[data-step="1"] .shot[data-shot="2"],
+  .step[data-step="2"] .shot[data-shot="4"],
+  .step[data-step="3"] .shot[data-shot="6"]{
+    transform: none !important;
+  }
+}
+
+/* ==============================
+cloud-terrace
+============================== */
+
+.cloud-terrace {
+  margin-top: clamp(120px, 20vw, 240px);
+}
+
+.cloud-terrace_title {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.cloud-terrace_title_lead {
+  text-align: center;
+  margin-top: 0;
+}
+
+.cloud-terrace_hero {
+  margin-block: clamp(60px, 20vw, 120px);
+}
+
+/* -----------------------------------------
+リビール パララックス
+----------------------------------------- */
+/* どの画像箱でも共通で使う */
+.js-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 2.0s ease, transform 2.0s ease;
+  will-change: transform, opacity;
+}
+
+.js-reveal.is-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* パララックスは画像だけ動かす */
+.js-parallax img {
+  display: block;
+  width: 100%;
+  height: auto;
+  will-change: transform;
+}
+/* -------------------------------------- */
+
+.cloud-terrace_hero_content {
+  text-align: center;
+}
+
+.cloud-terrace_hero_title {
+  font-size: var(--fs-heading);
+  margin-top: 40px;
+}
+
+.cloud-terrace_hero_text {
+  font-size: var(--fs-text);
+  /* margin-top: 24px; */
+  margin-bottom: 40px;
+  display: inline-block;
+  text-align: left;
+}
+
+.cloud-terrace_content {
+  display: flex;
+  align-items: center;
+  margin-bottom: 120px;
+}
+
+.cloud-terrace_content_text {
+  margin-left: 40px;
+}
+
+.cloud-terrace_gallery {
+  display: flex;
+  flex-direction: column; 
+  gap: 32px;
+}
+
+.cloud-terrace_content_title,
+.cloud-terrace_gallery_title {
+  font-size: var(--fs-heading);
+}
+
+.cloud-terrace_content_title {
+  margin-top: 40px;
+}
+
+.cloud-terrace_content_text_note,
+.cloud-terrace_gallery_text {
+  font-size: var(--fs-text);
+}
+
+.cloud-terrace_gallery_text {
+  margin-bottom: 24px;
+}
+
+.cloud-terrace_gallery_text {
+  text-align: center;
+}
+
+.sp-only {
+  display: none;
+}
+
+.cloud-terrace_content_items {
+  display: flex;
+  justify-content: center;
+  gap: clamp(12px, 2vw, 32px);
+}
+
+
+.cloud-terrace_content_item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  object-position: center; 
+}
+
+/* section_divider */
+
+.section_divider {
+  width: 1px;
+  height: 60px;
+  background: var(--color-text-main); 
+  margin: 80px auto;
+}
+
+/* phone */
+@media (max-width: 767px) {
+
+  .cloud-terrace_hero_image {
+    aspect-ratio: 6 / 4;
+  }
+
+  .cloud-terrace_hero_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover center;
+  }
+  
+  .cloud-terrace_content {
+    flex-direction: column;
+    margin-bottom: clamp(60px, 20vw, 120px);
+  }
+
+  /* 説明文だけ左寄せ */
+  .cloud-terrace_content_text {
+    text-align: left;
+    margin-left: 0;
+    /* margin-top: 40px; */
+  }
+
+  .cloud-terrace_gallery_text {
+    text-align: left;      /* 文字は左揃え */
+    margin-inline: auto;   /* ブロック自体を中央に */
+    width: fit-content;    /* 文章の横幅ぴったりにする */
+  }
+
+  .sp-only {
+    display: inline;
+  }
+
+  .cloud-terrace_gallery {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 画像を上に */
+  .cloud-terrace_content_items {
+    order: 1;
+  }
+
+  /* 文章を下に */
+  .cloud-terrace_gallery_text {
+    order: 2;
+  }
+
+  /* 画像が下に変な余白つくの防止 */
+  .cloud-terrace_item img{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+
+  /* slickの幅崩れ防止 */
+  .cloud-terrace_content_items .slick-slide{
+    padding: 0 8px;       /* 画像同士の間 */
+  }
+  .cloud-terrace_content_items .slick-list{
+    margin: 0 -8px;       /* paddingの相殺 */
+  }
+
+  /* dotsの位置調整 */
+  .cloud-terrace_content_items .slick-dots{
+    bottom: -24px;
+  }
+}
+
+/* ==============================
+guide
+============================== */
+
+.guide {
+  padding-bottom: var(--space-section-lg);
+}
+
+.guide_inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px; 
+  background-color: #fff;
+}
+
+.guide_item {
+  position: relative;
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+}
+
+.guide_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform .8s ease;
+  display: block;
+}
+
+.guide_item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.15);
+}
+
+/* 中央の文字 */
+.guide_label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+
+  font-size: var(--fs-title);
+  letter-spacing: 0.1em;
+  color: var(--color-base);
+}
+
+/* hoverで少しズーム */
+.guide_item:hover .guide_img {
+  transform: scale(1.1);
+}
+
+/* guide_item を配置の基準 */
+.guide_item {
+  position: relative;
+}
+
+.guide_label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-base);
+}
+
+.room_arrow {
+  display: inline-flex;
+  align-items: center;   /* ← 縦方向ど真ん中 */
+}
+
+/* ＞本体 */
+.room_arrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+}
+
+/* 「詳細を見る」 */
+.room_detail {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 44px);          /* ラベルの少し下 */
+  transform: translate(-50%, 0);
+  z-index: 2;
+  font-size: var(--color-text-main);
+  letter-spacing: 0.12em;
+  color: var(--color-base);
+  opacity: 0;
+  transform: translate(-50%, 8px);
+  transition: opacity .35s ease, transform .35s ease;
+  pointer-events: none;
+}
+
+/* ホバー時に表示 */
+.guide_item:hover .room_detail {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ホバー時に矢印を少し動かす */
+.guide_item:hover .room_arrow::before {
+  transform: rotate(-45deg) translateX(2px);
+  transition: transform .35s ease;
+}
+
+/* phone */
+@media (max-width: 767px) {
+  .guide_inner {
+  grid-template-columns: 1fr;
+  }
+}
+
+/* =============================
+footer 
+==============================*/
+
+.footer {
+  background-color: var(--color-accent);
+  color: var(--color-base);
+  padding: 90px 120px;
+}
+
+.footer_inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* --- 左 --- */
+.footer_left_images {
+  margin-bottom: 40px;
+}
+
+.footer_left_images img {
+  width: 180px;
+  height: auto;
+  display: block;
+}
+
+.footer_info p {
+  margin-bottom: 18px;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.footer_tel {
+  color: var(--color-base);
+  text-decoration: none;
+}
+
+.footer_tel:visited {
+  color: var(--color-base);
+}
+
+.footer_note {
+  margin-top: 32px;
+  max-width: 360px;
+}
+
+/* --- 中央 --- */
+.footer_center {
+  margin-top: 120px; /* ロゴの高さと揃える */
+}
+
+.footer_nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 26px;
+  column-gap: 70px;
+  margin: 0;
+}
+
+.footer_nav a {
+  color: var(--color-base);
+  font-size: 14px;
+}
+
+.footer_nav a:hover {
+  opacity: 0.5;
+}
+
+.footer_sns {
+  display: flex;
+  gap: 70px;
+  margin-top: 56px;
+}
+
+.footer_sns a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: .08em;
+}
+
+.footer_sns a:hover {
+  opacity: 0.5;
+}
+
+/* --- 右 --- */
+.footer_right {
+  margin-top: 88px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 56px;
+}
+
+.footer_reserve {
+  width: 100%;
+  height: 120px;
+  display: grid;
+  place-items: center;
+  background-color: var(--color-base);
+  color: var(--color-text-main);
+  text-decoration: none;
+  font-size: var(--fs-heading);
+  margin-top: 32px;
+}
+
+.footer_reserve:hover {
+  opacity: 0.5;
+}
+
+.footer_contact {
+  width: 100%;
+  text-align: center;
+  color: inherit;
+  text-decoration: none;
+  font-size: 16px;
+  padding-bottom: 18px;
+  position: relative;
+}
+
+.footer_contact_line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: var(--color-base);
+}
+
+.footer_contact:hover {
+  opacity: 0.5;
+}
+
+@media (max-width: 1024px) {
+
+  .footer {
+  background-color: var(--color-accent);
+  color: var(--color-base);
+  padding: 0;
+  }
+
+  .footer_inner {
+    grid-template-columns: 1fr;
+    gap: 0px;
+    align-items: start;
+  }
+
+  .footer_left {
+    margin-top: var(--space-section-sm);
+  }
+
+  .footer_right {
+    margin-bottom: var(--space-section-sm);
+  }
+
+  .footer_center {
+    padding-inline: 8%;
+  }
+
+  .footer_sns {
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 64px;
+  }
+}
+
+/* ==============================
+客室 page
+============================== */
+
+/* ------------------------------
+main_visual_room
+------------------------------ */
+
+.main_visual_room {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.main_visual_room img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/*  overlay を画像の上に重ねる */
+.main_visual_room_overlay {
+  position: absolute;
+  inset: 0;          /* top/right/bottom/left:0 と同じ */
+}
+
+/* wrapperは高さ100%にして、タイトルの基準にする */
+.main_visual_overlay .wrapper {
+  height: 100%;
+  position: relative;
+}
+
+/* pのデフォ余白を消す */
+.main_visual_room_title {
+  margin: 0;
+  position: absolute;
+  left: 32px;
+  bottom: 40px;
+  color: var(--color-base);
+  font-size: var(--fs-title);
+}
+
+@media (max-width: 1024px) {
+  .main_visual_title { 
+    left: 8%;
+  }
+}
+
+/* ------------------------------
+room_concept
+------------------------------ */
+
+.room_concept {
+  margin-block: var(--space-section-lg);
+  text-align: center;
+}
+
+.room_concept_title_lead {
+  display: inline-block;
+  text-align: left;
+  font-size: var(--fs-heading);
+}
+
+/* PCでは sp-only を消す */
+.sp-only {
+  display: none;
+}
+
+/* スマホだけ sp-only を表示 */
+@media (max-width: 767px) {
+  .sp-only {
+    display: inline;
+  }
+}
+
+/* ------------------------------
+rooms
+------------------------------- */
+
+.room_info {
+  background: var(--color-base);
+  padding: 80px 0;
+}
+
+/* 上段 */
+.room_top {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  gap: 64px;
+}
+
+.room_reverse {
+  margin-top: 120px;
+}
+
+/* タイトル */
+.room_name {
+  font-size: var(--fs-title);
+  color: var(--color-text-main);
+  white-space: nowrap;
+}
+
+/* 画像 */
+.room_figure {
+  flex: 1;
+  max-width: 900px;
+  height: 480px;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.room_figure img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+}
+
+/* 1枚目：0〜50% 表示 */
+.switch_img.is-1{
+  animation: fadeSwap 10s infinite;
+}
+
+/* 2枚目：50〜100% 表示（半周ずらす） */
+.switch_img.is-2{
+  animation: fadeSwap 10s infinite;
+  animation-delay: -5s; 
+}
+
+/* 交互にフェードする */
+@keyframes fadeSwap{
+  0%   { opacity: 1; }
+  40%  { opacity: 1; }
+  50%  { opacity: 0; }
+  90%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
+/* 下段 */
+
+.room_bottom {
+  margin-top: 80px;
+  display: flex;
+  /* gap: 48px; */
+  /* align-items: flex-start; */
+  justify-content: space-between;
+}
+
+/* 説明 */
+.room_text {
+  width: 60%;
+}
+
+.room_catch {
+  margin: 0 0 12px;
+  font-size: var(--fs-heading);
+  color: var(--color-text-main);
+}
+
+.room_desc {
+  font-size: var(--fs-text);
+  line-height: 2.1;
+  color: var(--color-text-main);
+  max-width: 640px;
+}
+
+/* スペックカード */
+.room_spec {
+  max-width: 480px;
+  padding: 24px;
+  margin: 0;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.room_spec_row {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(46,46,46,0.10);
+}
+
+.room_spec_row:last-child {
+  border-bottom: none;
+}
+
+.room_spec dt {
+  font-size: 14px;
+  color: var(--color-text-main);
+  opacity: 0.8;
+}
+
+.room_spec dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 2.0;
+  color: var(--color-text-main);
+}
+
+@media (max-width: 1024px) {
+
+  .room_info {
+    padding: 56px 0;
+  }
+
+  /* 上段：横並び→縦並び（タイトル→画像） */
+  .room_top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  /* 「2つ目の部屋」の上余白を少し控えめに */
+  .room_reverse {
+    margin-top: 72px;
+  }
+
+  /* タイトル（英字）は折り返してOKなら nowrap解除 */
+  .room_name {
+    white-space: normal;      /* ←折り返し許可 */
+    font-size: clamp(18px, 4.8vw, 22px);
+    letter-spacing: 0.12em;   /* 画像っぽく余白感 */
+  }
+
+  .room_figure {
+    max-width: 100%;
+    width: 100%;
+    height: auto;     
+    aspect-ratio: 16 / 9; 
+  }
+
+  /* 下段：横並び→縦並び（文章→スペック） */
+  .room_bottom {
+    margin-top: 20px;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .room_text {
+    width: 100%;
+  }
+
+  .room_catch { 
+    margin: 0 0 10px;
+    font-size: clamp(16px, 4.6vw, 20px);
+    line-height: 1.9;
+  }
+
+  .room_desc {
+    max-width: 100%;
+    line-height: 2.0;
+  }
+
+  /* スペックカード：横幅固定を解除して下に */
+  .room_spec {
+    width: 100%;
+    max-width: 100%;
+    padding: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  }
+  
+  .room_spec_row {
+    grid-template-columns: 56px 1fr; /* 少しだけ詰める */
+    gap: 8px;
+    padding: 10px 0;
+  }
+
+  .room_spec dt,
+  .room_spec dd { 
+    font-size: 13px;
+    line-height: 1.9;
+  }
+
+  .room_spec {
+    width: 90%;
+    max-width: 100%;
+    margin: 0; 
+  }
+}
+
+/* -----------------------------
+amenities
+----------------------------- */
+
+.amenities {
+  margin-block: var(--space-section-lg);
+}
+
+.amenities_head {
+  text-align: center;
+  margin-bottom: var(--space-section-md); 
+}
+
+.amenities_title {
+  text-align: center;
+  margin: 0 0 12px;
+}
+
+.amenities_lead {
+  text-align: center;
+  margin: 0;
+  color: var(--color-text-main);
+  opacity: 0.85;
+}
+
+/* 3カラム（真ん中寄せ＋固定幅） */
+.amenities_list {
+  display: flex;
+  justify-content: center;
+  gap: clamp(12px, 2vw, 32px); 
+}
+
+/* 1カード */
+.amenity {
+  width: calc(100% / 3);
+  text-align: center;
+}
+
+/* 画像 */
+.amenity_img {
+  /* width: 320px; */
+  width: 100%;
+  height: 320px;
+  margin: 0 auto 24px;
+}
+
+.amenity_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* タイトル */
+.amenity_name {
+  margin: 0 0 12px;
+  font-size: var(--fs-heading);
+  color: var(--color-text-main);
+}
+
+/* 説明 */
+.amenity_desc {
+  margin: 0;
+  font-size: var(--fs-text);
+  line-height: 2.0;
+  color: var(--color-text-main);
+  display: inline-block;
+  text-align: left;
+}
+
+/* tablet */
+@media (max-width: 1024px) {
+}
+
+/* phone */
+@media (max-width: 960px) {
+  .amenities_list {
+    display: block;        /* slickが内部で横並びを作るのでflexをやめる */
+    gap: 0;
+  }
+
+  .amenity {
+    width: 100%;           /* 1枚をコンテナ幅に合わせる */
+  }
+
+  .amenity_img {
+    width: 100%;
+    max-width: 560px; 
+    height: auto;
+    aspect-ratio: 1 / 1;   /* 正方形維持 */
+    margin: 0 auto 16px;
+  }
+
+  .amenity_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* ==============================
+お料理 page 
+===============================*/
+
+/* ------------------------------
+main_visual_meal
+------------------------------ */
+
+.main_visual_meal {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.main_visual_meal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ★ overlay を画像の上に重ねる */
+.main_visual_meal_overlay {
+  position: absolute;
+  inset: 0;          /* top/right/bottom/left:0 と同じ */
+}
+
+/* wrapperを“上に重ねる” */
+.main_visual_overlay .wrapper {
+  height: 100%;
+  position: relative;
+}
+
+.main_visual_meal_title {
+  margin: 0;
+  position: absolute;
+  left: 32px;
+  bottom: 40px;
+  color: var(--color-base);
+  font-size: var(--fs-title);
+}
+
+@media (max-width: 767px) {
+  .main_visual_title { 
+    left: 8%;
+  }
+}
+
+/* ------------------------------
+meal_concept
+------------------------------ */
+
+.meal_concept {
+  margin-block: var(--space-section-lg);
+  text-align: center;
+}
+
+.meal_concept_title_lead {
+  display: inline-block;
+  text-align: left;
+  font-size: var(--fs-heading);
+}
+
+/* ------------------------------
+meal_content
+------------------------------ */
+
+.meal_content {
+  margin-bottom: var(--space-section-md);
+}
+
+.meal_content_image {
+  overflow: hidden;
+}
+
+.meal_content_image img {
+  width: 100%;
+  height: auto;
+  display: block;
+
+  /* 最初は中央だけ見える */
+  clip-path: inset(0 50% 0 50%);
+  -webkit-clip-path: inset(0 50% 0 50%);
+
+  /* ここではまだアニメさせない */
+}
+
+/* 画面に入ったら発火 */
+.meal_content_image.is-show img {
+  animation: revealFromCenter 1.6s ease forwards;
+}
+
+@keyframes revealFromCenter{
+  to {
+    clip-path: inset(0 0 0 0);
+    -webkit-clip-path: inset(0 0 0 0);
+  }
+}
+
+.meal_content_text {
+  font-size: var(--fs-heading);
+  text-align: center;
+  margin-block: var(--space-section-md);
+}
+
+.meal_content_text_top {
+  margin-bottom: 40px;
+}
+
+.meal_content_text_bottom {
+  display: inline-block;
+  text-align: left;
+}
+
+@media (max-width: 767px) {
+  .meal_content_text {
+    text-align: left;
+  }
+}
+
+/* ------------------------------
+meal gallery slider
+------------------------------ */
+
+/* slickの外枠 */
+.meal_gallery_slider {
+  overflow: hidden;
+  padding: 0 24px;
+}
+
+.meal_gallery_slider .meal_slide {
+  padding: 0 6px;   /* スライド間の間隔 */
+  box-sizing: border-box;
+}
+
+.meal_gallery_slider .meal_slide img {
+  display: block;
+  width: 100%;
+  height: 80vh;
+  object-fit: cover;
+}
+
+/* slick内部のズレ補正 */
+.meal_gallery_slider .slick-list {
+  margin: 0 -24px;
+}
+
+/* ドットナビ（必要なら） */
+.meal_gallery_slider .slick-dots {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 0;
+}
+
+.meal_gallery_slider .slick-dots li {
+  list-style: none;
+}
+
+.meal_gallery_slider .slick-dots button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(46,46,46,.3);
+  background: transparent;
+  font-size: 0;
+  padding: 0;
+}
+
+.meal_gallery_slider .slick-dots .slick-active button {
+  background: rgba(46,46,46,.3);
+}
+
+/* =============================
+menu toggle button
+============================= */
+
+.menu_toggle_wrap {
+  background-color: var(--color-base);
+  padding: 120px 0;
+  text-align: center;
+  margin-top: 120px;
+}
+
+.menu_toggle_btn {
+  /* 背景を透明 */
+  background: transparent;
+  border: 1px solid var(--color-text-main);
+  padding: 18px 48px;
+  color: var(--color-text-main);
+  font-size: var(--fs-text);
+  cursor: pointer;
+  transition: opacity .3s ease;
+}
+
+.menu_toggle_btn:hover {
+  opacity: 0.6;
+}
+
+button {
+  font-family: inherit;
+}
+
+.menu_toggle_icon {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid var(--color-text-main);
+  border-bottom: 1px solid var(--color-text-main);
+  transform: rotate(45deg);
+  margin-left: 12px;
+  margin-bottom: 2px;
+  transition: transform .4s ease;
+}
+
+.menu_toggle_btn.is-open .menu_toggle_icon {
+  transform: rotate(-135deg);
+}
+
+/* 注釈 */
+.menu_toggle_note {
+  margin-top: 24px;
+  font-size: 12px;
+  opacity: 0.9;
+  color: var(--color-text-main);
+}
+
+/* =============================
+menu 
+==============================*/
+
+.menu {
+  padding: 40px 0;
+}
+
+.menu_card {
+  padding: 80px 100px;
+  /* border: 1px solid red; */
+}
+
+.menu_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 120px;
+
+}
+
+.menu_col {
+  min-width: 0;
+}
+
+.menu_head {
+  /* text-align: center; */
+  margin-bottom: 56px;
+}
+
+.menu_title {
+  margin: 0;
+  font-size: var(--fs-heading);
+  letter-spacing: 0.18em;
+  color: var(--color-text-main);
+  font-weight: 500;
+}
+
+.menu_title_line { 
+  display: inline-block;
+  width: 56px;
+  height: 1px;
+  background-color: var(--color-text-main);
+  margin-top: 16px;
+}
+
+.menu_list {
+  margin: 0;
+  padding: 0;
+}
+
+.menu_row {
+  margin: 0 0 44px;
+  padding: 0;
+  /* text-align: center; */
+}
+
+.menu_row:last-child {
+  margin-bottom: 0;
+}
+
+.menu_label {
+  margin: 0 0 10px;
+  font-size: var(--fs-text);
+  letter-spacing: 0.14em;
+  color: var(--color-text-main);
+}
+
+.menu_text {
+  margin: 0;
+  font-size: var(--fs-text);
+  line-height: 2.2;
+  letter-spacing: 0.08em;
+  color: var(--fs-small);
+}
+
+.menu p,
+.menu li,
+.menu button {
+  color: inherit;
+  font-family: inherit;
+  /* 親の値をそのまま引き継ぐ */
+}
+
+/* phone */
+@media (max-width: 767px) {
+  .menu {
+    padding: 24px 0;
+  }
+
+  .menu_card {
+    padding: 24px 16px; /* 横は小さめが読みやすい */
+  }
+
+  .menu_grid {
+    grid-template-columns: 1fr; /* 2カラム→1カラム */
+    gap: 80px;
+  }
+
+  .menu_head {
+    margin-bottom: 24px;
+    text-align: left; /* タイトルも左寄せが読みやすい */
+  }
+
+  .menu_row {
+    margin-bottom: 28px;
+  }
+
+}
+
+/* ------------------------------
+meal_message（お品書き下の文章）
+------------------------------ */
+
+.meal_message {
+  /* padding: 80px 0; */
+  text-align: center;
+  /* border: 1px solid red; */
+  margin-bottom: 240px;
+}
+
+/* 区切り線 */
+.meal_message_divider {
+  display: block;
+  width: 1px;
+  height: 60px;
+  background: var(--color-text-main);
+  margin: 80px auto;
+}
+
+.meal_message_text {
+  margin: 0 auto 48px;
+  font-size: var(--fs-text);
+  line-height: var(--lh-base);
+  letter-spacing: 0.08em;
+  color: var(--color-text-main);
+
+  /* display: inline-block; */
+  /* text-align: left; */
+}
+
+.meal_message_text:last-child {
+  margin-bottom: 0;
+}
+
+/* ===============================
+access
+=============================== */
+
+/* ------------------------------
+main_visual_access
+------------------------------ */
+
+.main_visual_access {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main_visual_access img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/*  overlay を画像の上に重ねる */
+.main_visual_access_overlay {
+  position: absolute;
+  inset: 0;          /* top/right/bottom/left:0 と同じ */
+}
+
+/* wrapperは高さ100%にして、タイトルの基準にする */
+.main_visual_overlay .wrapper {
+  height: 100%;
+  position: relative;
+}
+
+/* pのデフォ余白を消す（ズレ防止） */
+.main_visual_access_title {
+  margin: 0;
+  position: absolute;
+  left: 32px;
+  bottom: 40px;
+  color: var(--color-base);
+  font-size: var(--fs-title);
+}
+
+@media (max-width: 767px) {
+  .main_visual_title { 
+    left: 8%;
+  }
+}
+
+
+/* ------------------------------
+access_concept
+------------------------------ */
+
+.access_concept {
+  margin-block: var(--space-section-lg);
+  text-align: center;
+}
+
+.access_concept_title_lead {
+  display: inline-block;
+  text-align: left;
+  font-size: var(--fs-heading);
+}
+
+/* =============================
+access transport
+============================= */
+
+.access_transport {
+  background: var(--color-base);
+  padding: 80px 0;
+}
+
+/* 1ブロック（電車/自動車） */
+.access_block {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 64px;
+  padding: var(--space-section-md) 0;
+  /* border: 1px solid red; */
+  /* 「横に2列つくって、左は120px固定、右は残り全部」 */
+}
+
+.access_block + .access_block{
+  border-top: 1px solid rgba(46,46,46,0.08);
+  /* access_block が連続して並んだとき、2個目以降の access_block の“上”にだけ線を引く */
+}
+
+/* 左の縦ラベル */
+.access_label {
+  align-self: start;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  /* 縦書きのとき、文字を1文字ずつ正立させて表示する */
+  letter-spacing: 0.22em;
+  font-size: var(--fs-heading);
+  color: var(--color-text-main);
+  padding-top: 12px;
+}
+
+/* 右の本文 */
+.access_body {
+  min-width: 0;
+  /* 「この要素は、必要なら“0px まで”小さくなっていいよ」とブラウザに許可を出している
+ */
+}
+
+.access_lead {
+  margin: 0 0 40px;
+  font-size: var(--fs-text);
+  line-height: 2.2;
+  letter-spacing: 0.08em;
+  color: var(--color-text-main);
+  max-width: 640px;
+}
+
+/* ===== 電車レイアウト ===== */
+
+.train_layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 56px;
+}
+
+/* タイムライン本体 */
+.train_timeline {
+  margin: 0;
+  padding: 0 0 0 28px; /* 左のライン分 */
+  list-style: none;
+  position: relative;
+}
+
+/* 縦ライン */
+.train_timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: rgba(46,46,46,0.12);
+}
+
+.train_step {
+  position: relative;
+  padding: 0 0 28px;
+}
+
+.train_step:last-child {
+  padding-bottom: 0;
+}
+
+/* 丸（駅の点） */
+.train_step::before {
+  content: "";
+  position: absolute;
+  left: -22px;
+  /* 微調整 */
+  top: 6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--color-text-main);
+}
+
+/* 駅名 */
+.train_step_title {
+  margin: 0 0 6px;
+  font-size: var(--fs-small);
+  letter-spacing: 0.08em;
+  color: var(--color-text-main);
+}
+
+/* 補足 */
+.train_step_desc {
+  margin: 0;
+  font-size: var(--fs-small);
+  line-height: 2.0;
+  letter-spacing: 0.08em;
+  color: var(--color-text-main);
+  /* opacity: 0.8; */
+}
+
+/* 送迎カード */
+.shuttle_card {
+  background-color: #fff;
+  padding: 44px 56px;
+  border: 1px solid rgba(46,46,46,0.10);
+}
+
+.shuttle_title {
+  margin: 0 0 18px;
+  font-size: var(--fs-small);
+  letter-spacing: 0.12em;
+  font-weight: 500;
+  color: var(--color-text-main);
+}
+
+.shuttle_rows {
+  margin: 0;
+}
+
+.shuttle_row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 18px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(46,46,46,0.10);
+}
+
+.shuttle_row:first-child {
+  border-top: none;
+}
+
+.shuttle_row dt,
+.shuttle_row dd {
+  margin: 0;
+  font-size: var(--fs-small);
+  line-height: 2.0;
+  letter-spacing: 0.08em;
+  color: var(--color-text-main);
+}
+
+.shuttle_row dd {
+  text-align: right;
+  /* opacity: 0.9; */
+}
+
+.shuttle_note {
+  margin: 14px 0 0;
+  font-size: var(--fs-small);
+  line-height: 2.0;
+  letter-spacing: 0.08em;
+  /* opacity: 0.7; */
+  color: var(--color-text-main);
+}
+
+/* ===== 自動車 ===== */
+
+.car_routes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 6vw, 48px);
+  margin: 56px 0 24px;
+}
+
+.car_route {
+  background: #fff;
+  border: 1px solid rgba(46,46,46,0.10);
+  padding: 28px 32px;
+  text-align: center;
+}
+
+.car_route_from {
+  margin: 0 0 10px;
+  font-size: var(--fs-small);
+  letter-spacing: 0.12em;
+  /* opacity: 0.7; */
+  color: var(--color-text-main);
+}
+
+.car_route_main {
+  margin: 0 0 6px;
+  font-size: var(--fs-small);
+  letter-spacing: 0.12em;
+  color: var(--color-text-main);
+}
+
+.car_arrow {
+  display: inline-block;
+  padding: 0 10px;
+  /* opacity: 0.6; */
+}
+
+.car_route_time {
+  margin: 0;
+  font-size: var(--fs-small);
+  letter-spacing: 0.12em;
+  /* opacity: 0.7; */
+  color: var(--color-text-main);
+}
+
+.car_note {
+  margin: 0;
+  font-size: var(--fs-small);
+  line-height: 2.0;
+  letter-spacing: 0.08em;
+  /* opacity: 0.75; */
+  color: var(--color-text-main);
+  max-width: 720px;
+}
+
+/* 冬季注意（薄いカード） */
+.car_warn {
+  margin-top: 28px;
+  background: #fff;
+  border: 1px solid rgba(46,46,46,0.10);
+  padding: 22px 26px;
+}
+
+.car_warn_title {
+  margin: 0 0 16px;
+  font-size: var(--fs-small);
+  letter-spacing: 0.12em;
+  color: var(--color-text-main);
+}
+
+.car_warn_text {
+  margin: 0;
+  font-size: var(--fs-small);
+  line-height: 2.0;
+  letter-spacing: 0.08em;
+  /* opacity: 0.8; */
+  color: var(--color-text-main);
+}
+
+@media (max-width: 1024px) {
+  .access_block {
+    grid-template-columns: 1fr;
+    padding: 40px 0;
+  }
+
+  .access_label{
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    padding-top: 0;
+    letter-spacing: 0.12em;
+  }
+
+  .train_layout {
+    grid-template-columns: 1fr;
+  }
+
+  .car_arrow {
+  display: block;
+  }
+}
+
+/* =============================
+location
+============================= */
+
+.location {
+  margin-block: var(--space-section-lg);
+}
+
+.location_title {
+  margin: 0 0 32px;
+  font-size: var(--fs-title);
+  color: var(--color-text-main);
+  letter-spacing: 0.12em;
+}
+
+/* 地図枠 */
+.location_map {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* iframeを枠にフィット */
+.location_iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* 下の施設情報 */
+.location_info {
+  margin-top: 18px;
+  padding-top: 14px;
+  /* border-top: 1px solid rgba(46,46,46,0.08); */
+}
+
+.location_name {
+  margin: 0 0 6px;
+  font-size: var(--fs-small);
+  letter-spacing: 0.08em;
+  color: var(--color-text-main);
+}
+
+.location_address {
+  margin: 0;
+  font-size: var(--fs-small);
+  letter-spacing: 0.06em;
+  color: var(--color-text-main);
+}
+
+/* ==============================
+contact お問い合わせページ
+============================== */
+
+.page_contact header .btn-reserve {
+  color: var(--color-text-main);
+  border: 1px solid var(--color-text-main);
+}
+
+.page_contact header .hamburger span {
+  background-color: var(--color-text-main);
+}
+
+.page_contact .logo-default {
+  display: none;
+}
+
+.page_contact .logo-contact {
+  display: block;
+}
+
+.page_contact header {
+  background: none;
+}
+
+/* ------------------------------
+contact_concept
+------------------------------ */
+
+.main_visual_contact {
+  background-color: #fff;
+}
+.contact_concept {
+  /* margin-block: 240px; */
+  margin-block: 120px;
+  padding-block: 120px;
+  /* ここはこのままで良い */
+  text-align: center;
+  background-color: var(--color-accent-sub);
+  /* border: 1px solid red; */
+}
+
+.contact_concept_title_lead {
+  /* display: inline-block;
+  text-align: left; */
+  font-size: var(--fs-heading);
+}
+
+/* ------------------------------
+contact_content
+------------------------------ */
+
+.contact_content {
+  margin-bottom: var(--space-section-md);
+}
+
+.contact_content_text {
+  font-size: var(--fs-heading);
+  text-align: center;
+  margin-top: var(--space-section-md);
+}
+
+.contact_content_text_top {
+  margin-bottom: 40px;
+}
+
+.contact_content_text_bottom {
+  display: inline-block;
+  text-align: left;
+}
+
+/* ------------------------------
+contact_tel
+------------------------------ */
+
+.contact_tel {
+  text-align: center;
+  margin-bottom: var(--space-section-md);
+}
+
+.contact_tel_label,
+.contact_tel_time {
+  font-size: var(--fs-text);
+}
+
+.contact_tel_number {
+  font-size: var(--fs-title);
+}
+
+.contact_tel p {
+  margin: 0;
+}
+
+/* ------------------------------
+contact_form
+------------------------------ */
+
+.contact_bg {
+  background-color: var(--color-base);
+  padding-block: var(--space-section-md);
+}
+
+.form_row {
+  margin-bottom: 40px;
+}
+
+.form_row:last-child {
+  margin-bottom: 0px;
+}
+
+.form_label{
+  display: block;
+  font-size: var(--fs-text);
+  letter-spacing: .12em;
+  color: var(--color-text-main);
+  margin-bottom: 16px;
+}
+
+/* selectを包む箱（▼を置くため） */
+.form_select{
+  position: relative;
+}
+
+/* select本体（下線だけのデザイン） */
+.form_select .form_input{
+  width: 100%;
+  padding: 10px 44px 12px 0; /* 右に▼スペース */
+  border: none;
+  border-bottom: 1px solid rgba(46,46,46,0.55);
+  background: transparent;
+  color: var(--color-text-main);
+  font-family: inherit;
+  font-size: var(--color-text-main);
+  letter-spacing: 0.08em;
+
+  /* OSデフォルトの見た目を消す */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+}
+
+/* ▼アイコン（疑似要素） */
+.form_select::after{
+  content: "";
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid rgba(46,46,46,0.75);
+  border-bottom: 1px solid rgba(46,46,46,0.75);
+  transform: translateY(-50%) rotate(45deg);
+  pointer-events: none;
+}
+
+/* クリックしたとき */
+.form_select .form_input:focus{
+  border-bottom-color: rgba(46,46,46,0.9);
+}
+
+.contact_form_inner .form_row.form_row_2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 4vw, 40px);
+}
+
+.form_row .form_input {
+  width: 100%;
+  border: 1px solid #fff;
+  background-color: #fff;
+  padding-block: 20px;
+  color: var(--color-text-main);
+  font-family: inherit;
+  font-size: var(--color-text-main);
+  letter-spacing: 0.08em;
+
+  /* OSデフォルトの見た目を消す */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+}
+
+.form_textarea {
+  width: 100%;
+  border: 1px solid #fff;
+  background-color: #fff;
+  padding-block: 30px;
+  color: var(--color-text-main);
+  font-family: inherit;
+  font-size: var(--color-text-main);
+  letter-spacing: 0.08em;
+
+  /* OSデフォルトの見た目を消す */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+}
+
+/* ------------------------------
+form_agree
+------------------------------ */
+
+.form_agree {
+  text-align: center;
+  margin-top: 80px;
+  margin-bottom: 40px;
+}
+
+/* ------------------------------
+form_submit
+------------------------------ */
+
+.form_submit {
+  text-align: center;
+  margin-bottom: var(--space-section-lg);
+}
+
+.form_submit button {
+  color: var(--color-text-main);
+  border: 1px solid var(--color-text-main);
+  background-color: #fff;
+  padding: 10px 60px;
+  font-family: inherit;
+  letter-spacing: 0.12em;
+  transition: background-color .3s ease, color .3s ease, opacity .3s ease;
+}
+
+.form_submit button:hover {
+  background-color: rgba(46,46,46,0.06);
+  color: var(--color-text-main);
+}
+
+/* ============================== 
+Topへ戻る
+============================== */
+
+/* ===== Topへ戻る ===== */
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: var(--color-accent-sub);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.20);
+
+  /* ★fade方式にするので opacity制御はしない */
+  z-index: 99999;
+}
+
+/* 矢印 */
+.back-to-top::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border-left: 2px solid var(--color-base);
+  border-top: 2px solid var(--color-base);
+  transform: translate(-50%, -35%) rotate(45deg);
+  opacity: 0.95;
+}
+
+.back-to-top:hover {
+  background-color: #9FA9B5;
+}
+
+/* ナビが開いている間はトップに戻るボタンを隠す（fadeと合わせる） */
+body.nav-open .back-to-top {
+  display: none !important;
+}
+
+/* ==============================
+ページ切り替え
+============================== */
+
+.page_transition {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-accent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s ease;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+}
+
+.page_transition.is-show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.page_transition_inner {
+  text-align: center;
+  overflow: visible;
+}
+
+.page_transition_logo {
+  letter-spacing: 0.14em;
+  color: var(--color-base);
+  font-size: var(--fs-heading);
+  opacity: .85;
+}
+
+.page_transition_logo {
+  position: relative;
+  display: inline-block; /* 幅を文字に合わせる */
+  padding-bottom: 10px;  /* 線との距離 */
+  letter-spacing: 0.18em;
+}
+
+/* 下線 */
+.page_transition_logo::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-base);
+
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* オーバーレイが出たときに線を引く */
+.page_transition.is-show .page_transition_logo::after {
+  animation: underlineDraw 1.2s ease forwards;
+}
+
+@keyframes underlineDraw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.mist_intro {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,.90), rgba(255,255,255,0) 60%),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,.75), rgba(255,255,255,0) 65%),
+    rgba(255,255,255,.55);   /* ★ここが全体の霧感 */
+
+  opacity: 1;
+  transition: opacity 8.0s ease 0.3s;
+}
+
+/* 消える */
+body.is-loaded .mist_intro {
+  opacity: 0;
+}

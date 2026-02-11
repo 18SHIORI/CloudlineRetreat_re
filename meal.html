@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cloudline Retreat</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&display=swap"
+        rel="stylesheet"/>
+    <!-- Slick CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <!-- 自分のCSS -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+
+<body>
+    <header>
+        <div class="wrapper header_inner">
+            <h1><a href="index.html"><img src="images/logo4.svg" alt="Cloudline Retreat"></a></h1>
+            
+            <div class="header_inner_right">
+                <a href="#" class="btn-reserve">ご予約</a>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+
+            <nav id="navi">
+                <button type="button" class="nav_close" aria-label="メニューを閉じる"></button>
+
+                <ul class="nav_menu">
+                    <li><a href="index.html">トップ</a></li>
+                    <li><a href="index.html#experience">整う体験</a></li>
+                    <li><a href="room.html">客室</a></li>
+                    <li><a href="meal.html">お料理</a></li>
+                    <li><a href="access.html">アクセス</a></li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
+                </ul>
+
+                <div class="nav_cta">
+                    <a href="#" class="nav_reserve">ご予約</a>
+                    <a href="contact.html" class="nav_contact">お問い合わせ</a>
+                </div>
+            </nav>
+                
+            <div class="mask"></div>
+        </div>
+    </header>
+
+    <main>
+        <section id="meal" class="meal">
+            <div class="main_visual_meal">
+                <img src="images/meal_top3.png" alt="お料理のメインビジュアル">
+                
+                <div class="main_visual_overlay">
+                    <div class="wrapper">
+                        <p class="main_visual_title main_visual_meal_title">お料理</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="meal_concept wrapper">
+            <h2 class="section_title meal_concept_title">体をいたわる、<br>静かな食事の時間</h2>
+            <p class="meal_concept_title_lead">
+                一日の終わりと始まりに、<br class="sp-only">
+                体に優しく寄り添う食事を<br class="sp-only">
+                ご用意しています。<br>
+                静かな時間の中で、ゆっくりと<br class="sp-only">
+                お楽しみください。
+            </p>
+        </section>
+
+        <section class="meal_content">
+            <div class="meal_content_image wrapper">
+                <img src="images/meal_concept.png" alt="">
+            </div>
+
+            <div class="meal_content_text wrapper">
+                <p class="meal_content_text_top">この土地の食材を、<br class="sp-only">この土地の時間で食べる。</p>
+                <p class="meal_content_text_bottom">
+                    新潟の風土が育てた野菜や米、<br>
+                    清らかな水と、四季の移ろい。<br>
+                    生産者の想いに耳を澄ませながら、<br>
+                    ここでしか味わえない一皿を<br class="sp-only">お届けします。
+                </p>
+            </div>
+
+            <div class="meal_gallery">
+                <div class="meal_gallery_slider">
+                    <div class="meal_slide"><img src="images/meal_gallery_slider11.jpg" alt=""></div>
+                    <div class="meal_slide"><img src="images/meal_gallery_slider22.jpg" alt=""></div>
+                    <div class="meal_slide"><img src="images/meal_gallery_slider33.jpg" alt=""></div>
+                    <div class="meal_slide"><img src="images/meal_gallery_slider44.jpg" alt=""></div>
+                    <div class="meal_slide"><img src="images/meal_gallery_slider55.jpg" alt=""></div>
+                    <div class="meal_slide"><img src="images/meal_gallery_slider66.jpg" alt=""></div>
+                    <!-- <div class="meal_slide"><img src="images/meal_gallery_slider7.png" alt=""></div> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- お品書きボタン -->
+        <div class="menu_toggle_wrap">
+            <button class="menu_toggle_btn">
+                お品書きを見る
+                <span class="menu_toggle_icon"></span>
+            </button>
+            <p class="menu_toggle_note">
+                ※一例です。季節やその日の仕入れにより変更がございます。
+            </p>
+        </div>
+
+        <!-- お品書き-->
+        <section class="menu js-menu" id="menu">
+            <div class="menu_inner wrapper">
+                <div class="menu_card">
+
+                    <div class="menu_grid">
+                        <!-- 左 -->
+                        <article class="menu_col">
+                            <div class="menu_head">
+                                <h3 class="menu_title">雲上の夕餉</h3>
+                                <span class="menu_title_line" aria-hidden="true"></span>
+                            </div>
+
+                            <ul class="menu_list">
+                                <li class="menu_row">
+                                    <p class="menu_label">迎えの一杯</p>
+                                    <p class="menu_text">
+                                        温かな湯／柑橘と葉の香りを移した水<br>
+                                        生姜を効かせた自家製ドリンク
+                                    </p>
+                                </li>
+
+                                <li class="menu_row">
+                                    <p class="menu_label">前菜</p>
+                                    <p class="menu_text">
+                                        季節野菜と豆の盛り合わせ<br>
+                                        蜂蜜ヨーグルトの軽いソース
+                                    </p>
+                                </li>
+
+                                <li class="menu_row">
+                                    <p class="menu_label">温菜</p>
+                                    <p class="menu_text">
+                                        根菜のなめらかスープ<br>
+                                        味噌のコクをひとさじ
+                                    </p>
+                                </li>
+
+                                <li class="menu_row">
+                                    <p class="menu_label">魚料理</p>
+                                    <p class="menu_text">
+                                        旬魚のやさしい火入れ<br>
+                                        香味野菜のだし仕立て
+                                    </p>
+                                </li>
+
+                                <li class="menu_row">
+                                    <p class="menu_label">主菜</p>
+                                    <p class="menu_text">
+                                        季節の肉料理と畑の付け合わせ
+                                    </p>
+                                </li>
+
+                                <li class="menu_row">
+                                    <p class="menu_label">甘味</p>
+                                    <p class="menu_text">
+                                        季節の果実と温かいお茶
+                                    </p>
+                                </li>
+                            </ul>
+                        </article>
+
+                        <!-- 右 -->
+                        <article class="menu_col">
+                            <div class="menu_head">
+                                <h3 class="menu_title">雲と迎える朝の食卓</h3>
+                                <span class="menu_title_line" aria-hidden="true"></span>
+                            </div>
+
+                            <ul class="menu_list">
+                                <li class="menu_row">
+                                    <p class="menu_label">はじめの飲みもの</p>
+                                    <p class="menu_text">
+                                        温かな湯／柑橘の香り水<br>
+                                        自家製ジンジャードリンク
+                                    </p>
+                                </li>
+
+                                <li class="menu_row">
+                                    <p class="menu_label">畑の皿</p>
+                                    <p class="menu_text">
+                                        季節野菜のサラダ<br>
+                                        蜂蜜ヨーグルトのドレッシング
+                                    </p>
+                                </li>
+
+                                <li class="menu_row">
+                                    <p class="menu_label">卵料理</p>
+                                    <p class="menu_text">
+                                        平飼い卵のだし巻き<br>
+                                        または ふんわり仕立てのオムレツ
+                                    </p>
+                                </li>
+
+                                <li class="menu_row">
+                                    <p class="menu_label">大豆の一品</p>
+                                    <p class="menu_text">
+                                        なめらかに仕上げた豆腐料理
+                                    </p>
+                                </li>
+
+                                <li class="menu_row">
+                                    <p class="menu_label">朝の主食</p>
+                                    <p class="menu_text">
+                                        地元米・味噌仕立ての汁・漬け野菜
+                                    </p>
+                                </li>
+
+                                <li class="menu_row">
+                                    <p class="menu_label">結び</p>
+                                    <p class="menu_text">
+                                        旬の果実と温かいお茶
+                                    </p>
+                                </li>
+                            </ul>
+                        </article>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="meal_message">
+            <div class="meal_message_inner wrapper">
+                <span class="meal_message_divider"></span>
+
+                <p class="meal_message_text">
+                私たちが大切にしているのは、<br>
+                「何を食べるか」だけではなく、<br>
+                「どのような心持ちで食べるか」です。
+                </p>
+
+                <p class="meal_message_text">
+                雲の上の静寂の中で、<br>
+                ひと口ごとにほどけていく感覚を。<br>
+                それが、Cloudline Retreatの食事です。
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <button class="back-to-top" aria-label="トップへ戻る"></button>
+
+    <footer class="footer">
+        <div class="footer_inner wrapper">
+            <!-- 左 -->
+            <div class="footer_left">
+                <div class="footer_left_images">
+                    <img src="images/logo4.svg" alt="Cloudline Retreat">
+                </div>
+
+                <div class="footer_info">
+                    <p>〒949-0305<br>新潟県南魚沼市雲ヶ丘1257-3</p>
+                    <a href="tel:0257834120" class="footer_tel">025-783-4120</a>
+                    <p>受付時間：9:00～18:00</p>
+                    <p class="footer_note">
+                    チェックインのお問い合わせ、予約変更などのご連絡は
+                    こちらの時間内で承ります。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 中央 -->
+            <div class="footer_center">
+                <nav class="footer_nav">
+                    <a href="index.html">トップ</a>
+                    <a href="meal.html">お料理</a>
+                    <a href="index.html#experience">整う体験</a>
+                    <a href="access.html">アクセス</a>
+                    <a href="room.html">客室</a>
+                </nav>
+
+                <div class="footer_sns">
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                </div>
+            </div>
+
+            <!-- 右 -->
+            <div class="footer_right">
+                <a href="#" class="footer_reserve">ご予約</a>
+
+                <a href="contact.html" class="footer_contact">
+                    お問い合わせ
+                    <span class="footer_contact_line"></span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="page_transition" aria-hidden="true">
+        <div class="page_transition_inner">
+            <span class="page_transition_logo">Cloudline Retreat</span>
+        </div>
+    </div>
+
+    <!-- jQuery（先に読み込み） -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Slick（jQueryの後に読み込み） -->
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- 自分のJS（最後・defer） -->
+    <script src="js/main.js" defer></script>
+</body>
+</html>
