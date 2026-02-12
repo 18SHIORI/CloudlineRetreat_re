@@ -285,12 +285,14 @@ body.nav-open .mask {
   gap: 18px;
   justify-items: center;
   padding-bottom: 8px;
+  margin-top: 0;
+  margin-bottom: clamp(60px, 12vh, 140px);
 }
 
 .nav_reserve {
   display: inline-grid;
   place-items: center;
-  width: clamp(160px, 30vw, 220px);
+  width: 90%;
   height: clamp(48px, 8vw, 64px);
   background-color: #fff;
   color: var(--color-text-main);
